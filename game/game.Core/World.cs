@@ -23,6 +23,7 @@ namespace game.Core
         Tile[] FloorTiles;
         int tileSize = 16;
         int size;
+        public Rectangle worldSize;
         Random r = new Random();
         Camera2D camara;
 
@@ -36,13 +37,13 @@ namespace game.Core
 
             FloorTiles = new Tile[4];
             FloorTiles[0] = new Tile();
-            FloorTiles[0].DrawRectangle = new Rectangle(240, 16, 16, 16);
+            FloorTiles[0].DrawRectangle = new Rectangle(240, 16, 32, 32);
             FloorTiles[1] = new Tile();
-            FloorTiles[1].DrawRectangle = new Rectangle(240, 16, 16, 16);
+            FloorTiles[1].DrawRectangle = new Rectangle(150, 16, 32, 32);
             FloorTiles[2] = new Tile();
-            FloorTiles[2].DrawRectangle = new Rectangle(224, 32, 16, 16);
+            FloorTiles[2].DrawRectangle = new Rectangle(224, 32, 32, 32);
             FloorTiles[3] = new Tile();
-            FloorTiles[3].DrawRectangle = new Rectangle(240, 32, 16, 16);
+            FloorTiles[3].DrawRectangle = new Rectangle(100, 32, 32, 32);
 
             Grid = new Tile[size][];
             for (int i = 0; i < size; i++)
@@ -61,8 +62,8 @@ namespace game.Core
             for (int i = 0; i < size; i++) {
 
                 for (int j = 0; j < size; j++) {
-                   
-                    spriteBatch.Draw(Grass, new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize), Grid[i][j].DrawRectangle, Color.White);
+                    worldSize = new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize);
+                    spriteBatch.Draw(Grass, worldSize, Grid[i][j].DrawRectangle, Color.White);
                     
                 }
             }
@@ -71,7 +72,7 @@ namespace game.Core
         }
 
         public void Update(GameTime gametime) { 
-            camara.Update(gametime);
+            camara.Update(gametime, worldSize);
         }
     }
 }

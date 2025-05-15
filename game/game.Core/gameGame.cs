@@ -114,13 +114,14 @@ namespace game.Core
         protected override void LoadContent()
         {
             base.LoadContent();
-            movement = new Movement(GraphicsDevice);
+            grass = new Texture2D(GraphicsDevice, 1, 1);
+            grass = Content.Load<Texture2D>("tiles/grass");
+            world = new World(100, grass, GraphicsDevice);
+
+            movement = new Movement(GraphicsDevice, world);
             font = Content.Load<SpriteFont>("DefaultFont");
             movement.LoadContent(font);
 
-            grass = new Texture2D(GraphicsDevice, 1, 1);
-            grass = Content.Load<Texture2D>("tiles/grass");
-            world = new World(500, grass, GraphicsDevice);
         }
 
         /// <summary>
