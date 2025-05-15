@@ -24,6 +24,8 @@ namespace game.Core
         SpriteFont _font;
         Vector2 _position;
         World world;
+        int RealPositionX;
+        int RealPositionY;
        
 
         public Movement(GraphicsDevice deviceGraphics, World world) { 
@@ -56,8 +58,10 @@ namespace game.Core
 
         public void Update(GameTime gametime)
         {
+            RealPositionX = Int32.Parse(world.worldSize.X.ToString().Split(" ")[0]);
+            RealPositionY = Int32.Parse(world.worldSize.Y.ToString().Split(" ")[0]);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D) && (world.worldSize.X > rectangle.X))
+            if (Keyboard.GetState().IsKeyDown(Keys.D) && ((RealPositionX/2) > rectangle.X))
             {
                 rectangle.X += 2;
             }
@@ -69,7 +73,7 @@ namespace game.Core
             {
                 rectangle.Y -= 2;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S) && (world.worldSize.Y > rectangle.Y))
+            if (Keyboard.GetState().IsKeyDown(Keys.S) && (RealPositionY/2 > rectangle.Y))
             {
                 rectangle.Y += 2;
             }
