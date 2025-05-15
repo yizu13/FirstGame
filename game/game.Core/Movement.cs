@@ -58,8 +58,8 @@ namespace game.Core
 
         public void Update(GameTime gametime)
         {
-            RealPositionX = Int32.Parse(world.worldSize.X.ToString().Split(" ")[0]);
-            RealPositionY = Int32.Parse(world.worldSize.Y.ToString().Split(" ")[0]);
+            RealPositionX = Int32.Parse(world.worldSize.X.ToString());
+            RealPositionY = Int32.Parse(world.worldSize.Y.ToString());
 
             if (Keyboard.GetState().IsKeyDown(Keys.D) && ((RealPositionX/2) > rectangle.X))
             {
